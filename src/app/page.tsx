@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -45,12 +43,6 @@ export default function Home() {
       left: index * container.clientWidth,
       behavior: "smooth",
     });
-  };
-
-  // This function is no longer used as we're handling submission directly in the form
-  // Keeping it for reference
-  const handleSubmit = async (e: React.FormEvent) => {
-    // Implementation moved to inline form handler
   };
 
   return (
@@ -155,9 +147,9 @@ export default function Home() {
                   : "translate-y-10 opacity-0"
               }`}
             >
-              "At 1159 Realty, we believe in pushing boundaries and challenging
-              conventions. Join our movement and be part of something
-              extraordinary."
+              &quotAt 1159 Realty, we believe in pushing boundaries and
+              challenging conventions. Join our movement and be part of
+              something extraordinary.&quot
             </p>
 
             {/* CTA Button */}
@@ -212,8 +204,8 @@ export default function Home() {
                 <div className="theme-content animate-slide-up">
                   <p className="mb-6">
                     The School for the Daring is more than just an educational
-                    impact. It's a movement that challenges the status quo and
-                    pushes boundaries.
+                    impact. It&apos;s a movement that challenges the status quo
+                    and pushes boundaries.
                   </p>
                   <p>
                     We believe in creating an environment where innovation
@@ -259,9 +251,9 @@ export default function Home() {
                 </h2>
                 <div className="theme-content animate-slide-up">
                   <p className="mb-6">
-                    Be part of a community that's redefining what's possible.
-                    The School for the Daring is looking for individuals who
-                    aren't afraid to challenge themselves.
+                    Be part of a community that&apos;s redefining what&apos;s
+                    possible. The School for the Daring is looking for
+                    individuals who aren&apos;t afraid to challenge themselves.
                   </p>
                   <p>
                     Fill out the form to join our exclusive network and be the
@@ -277,7 +269,7 @@ export default function Home() {
                   {status === "success" ? (
                     <div className="text-center py-8 animate-fadeIn">
                       <h3 className="text-2xl font-bold mb-4 text-green-500">
-                        You're In!
+                        You&apos;re In!
                       </h3>
                       <p>
                         Thank you for joining the movement. Get ready to embrace
