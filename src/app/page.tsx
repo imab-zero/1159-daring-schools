@@ -14,12 +14,12 @@ export default function Home() {
   const [currentSection, setCurrentSection] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Animation effect when component mounts
+  // Animate on mount
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  // Handle horizontal scroll
+  // Horizontal scroll tracking
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
@@ -46,17 +46,17 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Fixed Navigation */}
+    <div className="max-h-screen h-screen bg-black text-white overflow-x-hidden">
+      {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-sm z-50 px-6 py-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-xl font-bold">
             <Image
               src="/assets/log.png"
               alt="Logo"
-              width={100}
-              height={100}
-              className="w-16 h-16"
+              width={50}
+              height={50}
+              className="w-14 h-14"
               unoptimized
             />
           </div>
@@ -78,17 +78,17 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Horizontal Scroll Container */}
+      {/* Scroll Sections */}
       <div
         ref={scrollContainerRef}
-        className="h-screen flex overflow-x-auto snap-x snap-mandatory hide-scrollbar"
+        className="h-screen w-screen flex overflow-x-auto snap-x snap-mandatory hide-scrollbar"
       >
         {/* Section 1: Hero */}
-        <section className="scroll-item relative">
-          {/* Background Image */}
+        <section className="scroll-item relative min-w-full h-screen snap-center">
+          {/* Background Layers */}
+          <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center z-0" />
           <div className="absolute inset-0 bg-black/50 z-10" />
-          <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center" />
-          <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute inset-0 z-20">
             <Image
               src="/assets/dots-grid.svg"
               alt="Dots Pattern"
@@ -102,13 +102,13 @@ export default function Home() {
               alt="Circle Pattern"
               width={800}
               height={800}
-              className="absolute -bottom-400 -left-400 opacity-20"
+              className="absolute -bottom-96 -left-96 opacity-20"
               unoptimized
             />
           </div>
 
-          {/* Content */}
-          <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
+          {/* Hero Content */}
+          <div className="relative z-30 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
             <h1
               className={`text-5xl md:text-7xl font-bold mb-6 tracking-tight transition-all duration-1000 transform ${
                 isVisible
@@ -147,12 +147,11 @@ export default function Home() {
                   : "translate-y-10 opacity-0"
               }`}
             >
-              &quotAt 1159 Realty, we believe in pushing boundaries and
+              &quot;At 1159 Realty, we believe in pushing boundaries and
               challenging conventions. Join our movement and be part of
-              something extraordinary.&quot
+              something extraordinary.&quot;
             </p>
 
-            {/* CTA Button */}
             <div
               className={`transition-all duration-1000 delay-600 transform ${
                 isVisible
@@ -161,8 +160,9 @@ export default function Home() {
               }`}
             >
               <button
+                type="button"
                 onClick={() => scrollToSection(2)}
-                className="px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 transition-colors hover:scale-[1.03] transform duration-300"
+                className="px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 hover:scale-[1.03] transition-transform duration-300"
               >
                 JOIN THE MOVEMENT
               </button>
@@ -171,30 +171,27 @@ export default function Home() {
         </section>
 
         {/* Section 2: About */}
-        <section className="scroll-item relative">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/0 z-10"></div>
+        <section className="scroll-item relative min-w-full h-screen snap-center">
+          <div className="absolute inset-0 overflow-hidden z-0">
             <Image
               src="/hero-bg.jpg"
               alt="Abstract Background"
               fill
-              style={{ objectFit: "cover" }}
-              className="opacity-30"
+              className="object-cover opacity-30"
               unoptimized
             />
-            <div className="absolute bottom-0 left-0 w-full">
-              <Image
-                src="/assets/wave.svg"
-                alt="Wave Pattern"
-                width={1440}
-                height={320}
-                className="w-full"
-                unoptimized
-              />
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/0" />
+            <Image
+              src="/assets/wave.svg"
+              alt="Wave"
+              width={1440}
+              height={320}
+              className="absolute bottom-0 left-0 w-full"
+              unoptimized
+            />
           </div>
 
-          <div className="relative z-20 container mx-auto px-6 py-24 flex flex-col justify-center h-full">
+          <div className="relative z-10 container mx-auto px-6 py-24 flex flex-col justify-center h-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="pt-52 md:pt-0">
                 <div className="theme-number animate-fade-in">01</div>
@@ -218,9 +215,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-600/10 z-10"></div>
                 <Image
                   src="/assets/dots-grid.svg"
-                  alt="About Image"
+                  alt="About Illustration"
                   fill
-                  style={{ objectFit: "cover" }}
+                  className="object-cover"
                   unoptimized
                 />
               </div>
@@ -228,13 +225,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3: Join Form */}
-        <section className="scroll-item relative">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0 z-10"></div>
+        {/* Section 3: Join */}
+        <section className="scroll-item relative min-w-full h-screen snap-center">
+          <div className="absolute inset-0 overflow-hidden z-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0" />
             <Image
               src="/assets/dots-grid.svg"
-              alt="Dots Pattern"
+              alt="Dots"
               width={400}
               height={400}
               className="absolute top-20 left-20 opacity-30"
@@ -242,7 +239,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative z-20 container mx-auto px-6 py-24 flex flex-col justify-center h-full">
+          <div className="relative z-10 container mx-auto px-6 py-24 flex flex-col justify-center h-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="pt-12 md:pt-0">
                 <div className="theme-number animate-fade-in">02</div>
@@ -252,8 +249,7 @@ export default function Home() {
                 <div className="theme-content animate-slide-up">
                   <p className="mb-6">
                     Be part of a community that&apos;s redefining what&apos;s
-                    possible. The School for the Daring is looking for
-                    individuals who aren&apos;t afraid to challenge themselves.
+                    possible.
                   </p>
                   <p>
                     Fill out the form to join our exclusive network and be the
@@ -266,14 +262,15 @@ export default function Home() {
                   <h2 className="text-2xl font-bold mb-6 text-center text-yellow-600">
                     JOIN THE MOVEMENT
                   </h2>
+
                   {status === "success" ? (
                     <div className="text-center py-8 animate-fadeIn">
                       <h3 className="text-2xl font-bold mb-4 text-green-500">
                         You&apos;re In!
                       </h3>
                       <p>
-                        Thank you for joining the movement. Get ready to embrace
-                        your daring future.
+                        Thanks for joining. Prepare to embrace your daring
+                        future.
                       </p>
                     </div>
                   ) : (
@@ -294,24 +291,23 @@ export default function Home() {
                           formData.append("email", email);
                           formData.append("name", name);
 
-                          const response = await fetch("/api/lead", {
+                          const res = await fetch("/api/lead", {
                             method: "POST",
                             body: formData,
                           });
 
-                          const data = await response.json();
+                          const data = await res.json();
 
-                          if (!response.ok) {
+                          if (!res.ok)
                             throw new Error(
                               data.error || "Registration failed"
                             );
-                          }
 
                           setStatus("success");
                           setEmail("");
                           setName("");
                         } catch (error) {
-                          console.error("Form submission error:", error);
+                          console.error("Submission Error:", error);
                           setStatus("error");
                           setErrorMessage(
                             error instanceof Error
@@ -322,26 +318,22 @@ export default function Home() {
                       }}
                       className="space-y-6"
                     >
-                      <div className="transition-all duration-300 hover:transform hover:scale-[1.02]">
-                        <input
-                          type="text"
-                          placeholder="Your Name"
-                          className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-yellow-600"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        placeholder="Your Name"
+                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-yellow-600"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
 
-                      <div className="transition-all duration-300 hover:transform hover:scale-[1.02]">
-                        <input
-                          type="email"
-                          placeholder="Your Email"
-                          required
-                          className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-yellow-600"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
+                      <input
+                        type="email"
+                        placeholder="Your Email"
+                        required
+                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-yellow-600"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
 
                       {status === "error" && (
                         <div className="text-yellow-600 text-sm font-bold p-2 bg-red-100/10 border border-yellow-600 rounded animate-pulse">
@@ -352,7 +344,7 @@ export default function Home() {
                       <button
                         type="submit"
                         disabled={status === "loading"}
-                        className="w-full bg-red-600 hover:bg-red-700 hover:scale-[1.03] text-white font-bold py-3 px-4 rounded transition-all duration-300 disabled:opacity-50"
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition-all duration-300 hover:scale-[1.03] disabled:opacity-50"
                       >
                         {status === "loading"
                           ? "Joining..."
@@ -369,12 +361,11 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-black py-6 text-center text-gray-400 text-sm">
-        <div className="container mx-auto">
-          <p className="mb-2">
-            © {new Date().getFullYear()} School for the Daring. All rights
-            reserved.
-          </p>
-        </div>
+        <h1 className="text-white">School for the Daring</h1>
+        <p>
+          © {new Date().getFullYear()} School for the Daring. All rights
+          reserved.
+        </p>
       </footer>
     </div>
   );
