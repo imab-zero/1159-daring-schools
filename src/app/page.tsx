@@ -46,17 +46,17 @@ export default function Home() {
   };
 
   return (
-    <div className="max-h-screen h-screen bg-black text-white overflow-x-hidden">
+    <div className=" bg-black text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-sm z-50 px-6 py-4">
+      <nav className="fixed top-0 left-0 w-full h-16 bg-black/80 backdrop-blur-sm z-50 px-6 py-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-xl font-bold">
             <Image
               src="/assets/log.png"
               alt="Logo"
-              width={50}
-              height={50}
-              className="w-14 h-14"
+              width={20}
+              height={20}
+              className="w-10 h-10"
               unoptimized
             />
           </div>
@@ -81,7 +81,7 @@ export default function Home() {
       {/* Scroll Sections */}
       <div
         ref={scrollContainerRef}
-        className="h-screen w-screen flex overflow-x-auto snap-x snap-mandatory hide-scrollbar"
+        className="w-screen bg-black overflow-y-hidden flex overflow-x-auto snap-x snap-mandatory hide-scrollbar"
       >
         {/* Section 1: Hero */}
         <section className="scroll-item relative min-w-full h-screen snap-center">
