@@ -361,10 +361,9 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-black py-6 text-center text-gray-400 text-sm">
-        <h1 className="text-white">School for the Daring</h1>
         <p>
-          © {new Date().getFullYear()} School for the Daring. All rights
-          reserved.
+          © {new Date().getFullYear()} School for the Daring. <br></br>Powered
+          by 1159 Realty <br></br>All rights reserved.
         </p>
       </footer>
     </div>
