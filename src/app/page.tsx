@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -52,11 +53,11 @@ export default function Home() {
         <div className="container mx-auto flex justify-between items-center">
           <div className="text-xl font-bold">
             <Image
-              src="/assets/log.png"
+              src="/assets/logo.svg"
               alt="Logo"
-              width={20}
-              height={20}
-              className="w-10 h-10"
+              width={50}
+              height={50}
+              className="w-32 h-10"
               unoptimized
             />
           </div>
@@ -67,7 +68,7 @@ export default function Home() {
                 onClick={() => scrollToSection(index)}
                 className={`px-4 py-2 transition-colors ${
                   currentSection === index
-                    ? "text-yellow-600"
+                    ? "text-[#D4AF37]"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
@@ -86,10 +87,10 @@ export default function Home() {
         {/* Section 1: Hero */}
         <section className="scroll-item relative min-w-full h-screen snap-center">
           {/* Background Layers */}
-          <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center z-0" />
+          <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] -top-10 bg-cover bg-center z-0" />
           <div className="absolute inset-0 bg-black/50 z-10" />
           <div className="absolute inset-0 z-20">
-            <Image
+            {/* <Image
               src="/assets/dots-grid.svg"
               alt="Dots Pattern"
               width={400}
@@ -104,20 +105,23 @@ export default function Home() {
               height={800}
               className="absolute -bottom-96 -left-96 opacity-20"
               unoptimized
-            />
+            /> */}
           </div>
 
           {/* Hero Content */}
           <div className="relative z-30 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
             <h1
-              className={`text-5xl md:text-7xl font-bold mb-6 tracking-tight transition-all duration-1000 transform ${
+              className={`text-5xl md:text-7xl font-normal mb-6 tracking-tight transition-all duration-1000 transform ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-10 opacity-0"
               }`}
             >
-              <span className="text-yellow-600">SCHOOL</span> FOR THE{" "}
-              <span className="text-yellow-600">DARING</span>
+              SCHOOL FOR
+              <span className="font-bold italic text-[#D4AF37]">
+                {" "}
+                THE DARING
+              </span>
             </h1>
 
             <p
@@ -127,17 +131,7 @@ export default function Home() {
                   : "translate-y-10 opacity-0"
               }`}
             >
-              Unlock Your Potential
-            </p>
-
-            <p
-              className={`text-xl md:text-2xl max-w-3xl mb-6 font-light transition-all duration-1000 delay-500 transform ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-10 opacity-0"
-              }`}
-            >
-              Embrace the Challenge
+              Unlock Your Potential - Embrace the Challenge
             </p>
 
             <p
@@ -162,7 +156,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => scrollToSection(2)}
-                className="px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 hover:scale-[1.03] transition-transform duration-300"
+                className="px-8 py-4 bg-[#D4AF37] text-white font-bold rounded-full hover:bg-yellow-400 hover:scale-[1.03] transition-transform duration-300"
               >
                 JOIN THE MOVEMENT
               </button>
@@ -177,7 +171,7 @@ export default function Home() {
               src="/hero-bg.jpg"
               alt="Abstract Background"
               fill
-              className="object-cover opacity-30"
+              className="object-cover opacity-56"
               unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/0" />
@@ -194,7 +188,9 @@ export default function Home() {
           <div className="relative z-10 container mx-auto px-6 py-24 flex flex-col justify-center h-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="pt-52 md:pt-0">
-                <div className="theme-number animate-fade-in">01</div>
+                <div className="text-3xl font-bold text-[#D4AF37] animate-fade-in">
+                  01
+                </div>
                 <h2 className="theme-title animate-slide-up">
                   We Challenge Conventions
                 </h2>
@@ -242,7 +238,9 @@ export default function Home() {
           <div className="relative z-10 container mx-auto px-6 py-24 flex flex-col justify-center h-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="pt-12 md:pt-0">
-                <div className="theme-number animate-fade-in">02</div>
+                <div className="text-3xl font-bold text-[#D4AF37] animate-fade-in">
+                  02
+                </div>
                 <h2 className="theme-title animate-slide-up">
                   Join The Movement
                 </h2>
@@ -259,7 +257,7 @@ export default function Home() {
               </div>
               <div className="animate-scale">
                 <div className="w-full p-8 bg-black/80 rounded-lg border border-gray-800">
-                  <h2 className="text-2xl font-bold mb-6 text-center text-yellow-600">
+                  <h2 className="text-2xl font-bold mb-6 text-center text-[#D4AF37]">
                     JOIN THE MOVEMENT
                   </h2>
 
@@ -287,9 +285,21 @@ export default function Home() {
                             return;
                           }
 
+                          if (!phone) {
+                            setStatus("error");
+                            setErrorMessage("Phone number is required");
+                            return;
+                          }
+                          if (!name) {
+                            setStatus("error");
+                            setErrorMessage("Enter your name");
+                            return;
+                          }
+
                           const formData = new FormData();
                           formData.append("email", email);
                           formData.append("name", name);
+                          formData.append("phone", phone);
 
                           const res = await fetch("/api/lead", {
                             method: "POST",
@@ -305,6 +315,7 @@ export default function Home() {
 
                           setStatus("success");
                           setEmail("");
+                          setPhone("");
                           setName("");
                         } catch (error) {
                           console.error("Submission Error:", error);
@@ -320,23 +331,32 @@ export default function Home() {
                     >
                       <input
                         type="text"
-                        placeholder="Your Name"
-                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-yellow-600"
+                        placeholder="Your Name*"
+                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-[#D4AF37]"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
 
                       <input
                         type="email"
-                        placeholder="Your Email"
+                        placeholder="Your Email*"
                         required
-                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-yellow-600"
+                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-[#D4AF37]"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
 
+                      <input
+                        type="tel"
+                        placeholder="Phone Number *"
+                        className="w-full p-3 bg-gray-900 border border-gray-700 rounded focus:ring-2 focus:ring-[#D4AF37]"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                      />
+
                       {status === "error" && (
-                        <div className="text-yellow-600 text-sm font-bold p-2 bg-red-100/10 border border-yellow-600 rounded animate-pulse">
+                        <div className="text-[#D4AF37] text-sm font-bold p-2 bg-red-100/10 border border-[#D4AF37] rounded animate-pulse">
                           Error: {errorMessage}
                         </div>
                       )}
@@ -344,7 +364,7 @@ export default function Home() {
                       <button
                         type="submit"
                         disabled={status === "loading"}
-                        className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition-all duration-300 hover:scale-[1.03] disabled:opacity-50"
+                        className="w-full bg-[#D4AF37] hover:bg-yellow-500 text-white font-bold py-3 px-4 rounded transition-all duration-300 hover:scale-[1.03] disabled:opacity-50"
                       >
                         {status === "loading"
                           ? "Joining..."

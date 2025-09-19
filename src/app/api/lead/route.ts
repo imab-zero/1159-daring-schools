@@ -13,6 +13,7 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
     const name = formData.get("name") as string;
 
     // Basic validation
@@ -72,6 +73,7 @@ export async function POST(request: NextRequest) {
       requestBody: {
         values: [
           [
+            phone.trim(),
             email.trim(),
             name?.trim() || "N/A",
             timestamp,
@@ -87,7 +89,12 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         message: "Successfully registered for the movement!",
-        data: { email: email.trim(), name: name?.trim() || "N/A", timestamp },
+        data: {
+          email: email.trim(),
+          name: name?.trim() || "N/A",
+          timestamp,
+          phone: phone.trim(),
+        },
       },
       { status: 201 }
     );
