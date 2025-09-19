@@ -73,11 +73,11 @@ export async function POST(request: NextRequest) {
       requestBody: {
         values: [
           [
-            phone.trim(),
             email.trim(),
             name?.trim() || "N/A",
             timestamp,
             "School for the Daring Website",
+            phone.trim(),
           ],
         ],
       },
